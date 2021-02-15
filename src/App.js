@@ -1,23 +1,24 @@
-import {useDispatch, useSelector} from "react-redux";
-import {Header} from "./components/header/header";
-import {ProductList} from "./components/product-list/product-list";
-import React, {useEffect} from 'react';
-import {setProducts} from "./redux/action-creators/product-creator";
-
+import React from 'react';
+import {BaseLayout} from "./layouts/baseLayout";
+import {Home} from "./pages/Home";
+import {MovieDetails} from "./pages/MovieDetails";
+import {Switch, Route} from "react-router-dom";
 
 export default function App() {
 
-    const {products} = useSelector(({products: {products}}) => ({products}));
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(setProducts());
-    }, [dispatch]);
-
     return (
         <div>
-            <Header/>
-            <ProductList products={products}/>
+            <BaseLayout>
+                <Switch>
+                    <Route path='/' exact>
+                        <Home/>
+                    </Route>
+
+                    <Route path='/movie/:id'>
+                        <MovieDetails/>
+                    </Route>
+                </Switch>
+            </BaseLayout>
         </div>
     );
 }

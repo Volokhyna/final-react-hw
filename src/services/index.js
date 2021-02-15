@@ -1,10 +1,3 @@
-import {ProductService} from "./product-service";
-import {httpClient} from "./http-client";
+export * from './MoviesService';
+export * from './GenresService';
 
-export const services = {
-    productService: new ProductService(httpClient),
-};
-
-export const useServices = () => {
-    return services;
-};
